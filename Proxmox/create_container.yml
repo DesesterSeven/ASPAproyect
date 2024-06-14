@@ -1,0 +1,20 @@
+- name: Create Ubuntu container on Proxmox
+  hosts: proxmox
+  tasks:
+    - name: Create a Ubuntu container
+      community.general.proxmox_kvm:
+        node: "lemon-tea"  # Nombre del nodo Proxmox
+        api_host: "proyectx.lemon-tea.org.es"
+        api_user: "root@pam"
+        api_password: ""
+        vmid: 104  # ID del contenedor
+        ostemplate: "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+        password: ""
+        memory: 512  # Memoria en MB
+        swap: 512  # Swap en MB
+        cores: 1
+        net0: name=eth0,bridge=vmbr0,ip=dhcp
+        storage: "local"
+        state: present
+  collections:
+    - community.general

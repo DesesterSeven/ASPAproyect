@@ -1,0 +1,7 @@
+    [Desktop Entry]
+    Name=Apagar
+    Name[de_DE]=Apagar
+    Exec=/home/[Nombre Usuario]/apagar.sh
+    Terminal=true
+    Type=Application
+    Icon=home/[Nombre Usuario]/Imágenes/[Nombre Image]

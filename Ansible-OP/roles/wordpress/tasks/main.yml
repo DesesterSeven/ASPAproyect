@@ -1,0 +1,15 @@
+---
+
+- name: Install unzip package
+  apt: name=unzip state=installed
+
+- name: Check if Wordpress has been previously downloaded
+  stat: path="{{ wp_download_path }}"
+  when: wp_zipped.stat.exists == false
+
+- name: Download Wordpress
+  get_url: url="{{ wp_url }}" dest="{{ wp_download_path }}"
+  when: wp_zipped.stat.exists == false
+
+- name: Unzip Wordpress
+  unarchive: src="{{ wp_download_path }}"dest="{{ wp_webserver_path }}" copy=no
