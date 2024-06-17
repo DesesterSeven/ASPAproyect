@@ -1,0 +1,9 @@
+- name: Retrieve information about specific VM by name and get current configuration
+  community.general.proxmox_vm_info:
+    api_host: proxmoxhost
+    api_user: root@pam
+    api_password: '{{ password | default(omit) }}'
+    node: node01
+    type: lxc
+    name: lxc05.home.arpa
+    config: current

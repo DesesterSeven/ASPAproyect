@@ -1,0 +1,8 @@
+- name: Retrieve information about specific VM by ID
+  community.general.proxmox_vm_info:
+    api_host: proxmoxhost
+    api_user: root@pam
+    api_password: '{{ password | default(omit) }}'
+    node: node01
+    type: qemu
+    vmid: 101
