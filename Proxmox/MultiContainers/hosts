@@ -1,0 +1,10 @@
+[proxmox]
+proxmox1 ansible_host=192.168.1.101
+proxmox2 ansible_host=192.168.1.102
+proxmox3 ansible_host=192.168.1.103
+
+[all:vars]
+ansible_user=root
+ansible_password=your_password
+ansible_connection=ssh
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'

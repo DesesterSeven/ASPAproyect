@@ -1,0 +1,28 @@
+---
+- name: Create LXC containers on Proxmox
+  hosts: proxmox
+  gather_facts: no
+  tasks:
+    - name: Create LXC container
+      community.general.proxmox_kvm:
+        api_host: "{{ ansible_host }}"
+        api_user: "root@pam"
+        api_password: "{{ ansible_password }}"
+        node: "{{ inventory_hostname }}"
+        vmid: 100
+        name: "mycontainer"
+        state: present
+        pool: "mypool"
+        cpus: 1
+        memory: 512
+        ostemplate: "local:vztmpl/debian-10-standard_10.0-1_amd64.tar.gz"
+        storage: "local-lvm"
+        password: "container_password"
+        netif:
+          - name: eth0
+            bridge: vmbr0
+            firewall: false
+            gw: 192.168.1.1
+            ip: 192.168.1.50/24
+        onboot: true
+      delegate_to: localhost
