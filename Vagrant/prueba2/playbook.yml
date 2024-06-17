@@ -1,0 +1,19 @@
+---
+- name: Configure LXC containers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install basic packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - curl
+        - vim
+        - git
+    - name: Create a file
+      file:
+        path: "/home/vagrant/hello_from_ansible.txt"
+        state: touch
+        owner: vagrant
+        group: vagrant
