@@ -1,8 +1,8 @@
-*** Instalar Plugions
+### Instalar Plugions
 
 vagrant plugin install vagrant-proxmox
 
 
-*** Ejecutar Vagrant
+### Ejecutar Vagrant
 
 vagrant up
