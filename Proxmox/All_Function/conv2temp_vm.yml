@@ -1,0 +1,8 @@
+- name: Convert container to template
+  community.general.proxmox:
+    vmid: 100
+    api_user: root@pam
+    api_password: ""
+    api_host: node1
+    state: template
+    #force: true -> Para apagar el contenedor si esta encendido

@@ -1,0 +1,7 @@
+- name: Restart container(stopped or mounted container you can't restart)
+  community.general.proxmox:
+    vmid: 100
+    api_user: root@pam
+    api_password: ""
+    api_host: node1
+    state: restarted

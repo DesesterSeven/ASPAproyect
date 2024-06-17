@@ -1,0 +1,18 @@
+- name: Create VM
+  hosts: localhost
+  roles:
+  - role: proxmox-ansible
+    vars:
+      action: create_vm
+      proxmox_host: ""
+      proxmox_user: "user@pam"
+      proxmox_pass: ""
+      vm_name: testvm01
+      cpu_sockets: 1
+      cpu_cores: 1
+      ram_mb: 2048
+      disk_gb: 20
+      datastore: ds01
+      vlan: 1
+      template_name: 'local:vztmpl:ubuntu_23.10-1_amd64.tar.zst'
+      proxmox_node: ""

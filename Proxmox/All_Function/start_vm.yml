@@ -1,0 +1,9 @@
+
+- name: Start container
+  community.general.proxmox:
+    vmid: 100
+    api_user: root@pam
+    api_password: ""
+    api_host: node1
+    state: started
+    # Se puede añadir un temporizador para que tarde unos segundos en iniciar -> timeout: 90

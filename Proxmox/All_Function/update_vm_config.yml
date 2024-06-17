@@ -1,0 +1,9 @@
+- name: Update container configuration
+  community.general.proxmox:
+    vmid: 100
+    node: uk-mc02
+    api_user: root@pam
+    api_password: ""
+    api_host: node1
+    netif: '{"net0":"name=eth0,gw=192.168.0.1,ip=192.168.0.3/24,bridge=vmbr0"}'
+    update: true

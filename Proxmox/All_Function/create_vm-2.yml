@@ -1,0 +1,15 @@
+- name: Create new container with minimal options
+  community.general.proxmox:
+    vmid: 100
+    node: ""
+    api_user: root@pam
+    api_password: ""
+    api_host: node1
+    password: ""
+    hostname: example.org
+    #ostemplate: 'local:vztmpl/ubuntu-14.04-x86_64.tar.gz' -> Para usar una plantilla como referencia
+    #disk: 'local-lvm:20' -> especifica el lugar y la capacidad del disco que usara la el contenedor
+    #mounts: '{"mp0":"local:8,mp=/mnt/test/"}' -> monta una memoria de 8 GB
+    #netif: '{"net0":"name=eth0,gw=192.168.0.1,ip=192.168.0.2/24,bridge=vmbr0"}' -> Especifica una red interna con ip fija
+    #netif: '{"net0":"name=eth0,ip=dhcp,ip6=dhcp,bridge=vmbr0"}' -> Especifica que usara la modo puente 'briedge' y que asignara las ip privada por dhcp
+    description: created with ansible

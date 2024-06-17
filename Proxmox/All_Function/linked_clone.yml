@@ -1,0 +1,12 @@
+- name: >
+    Create a linked clone of the template container with id 100. The newly created container with be a
+    linked clone, because no storage parameter is defined
+  community.general.proxmox:
+    vmid: 201
+    node: uk-mc02
+    api_user: root@pam
+    api_password: ""
+    api_host: node1
+    clone: 100
+    hostname: clone.example.org
+  # Para que sea una clonacion completa añadir -> storage: local
