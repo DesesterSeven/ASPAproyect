@@ -1,0 +1,9 @@
+ - name: Create Proxmox group
+      community.general.proxmox:
+        api_user: "root@pam"
+        api_password: "your_password"
+        api_host: "{{ ansible_host }}"
+        validate_certs: no
+        action: create_group
+        group: "new_group"
+        comment: "New group created by Ansible"

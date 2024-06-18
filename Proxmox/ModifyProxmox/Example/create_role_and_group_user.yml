@@ -1,0 +1,60 @@
+---
+- name: Create role, group, and users in Proxmox
+  hosts: proxmox
+  gather_facts: no
+  tasks:
+    - name: Create Proxmox role
+      uri:
+        url: "https://{{ ansible_host }}:8006/api2/json/access/roles"
+        method: POST
+        user: "root@pam"
+        password: "your_password"
+        validate_certs: no
+        headers:
+          Content-Type: "application/x-www-form-urlencoded"
+        body: "roleid=new_role&privs=VM.Audit,VM.Config.Disk"
+        body_format: form-urlencoded
+      register: create_role_response
+
+    - name: Debug role creation response
+      debug:
+        var: create_role_response
+
+    - name: Create Proxmox group
+      community.general.proxmox:
+        api_user: "root@pam"
+        api_password: "your_password"
+        api_host: "{{ ansible_host }}"
+        validate_certs: no
+        action: create_group
+        group: "new_group"
+        comment: "New group created by Ansible"
+
+    - name: Assign role to group
+      uri:
+        url: "https://{{ ansible_host }}:8006/api2/json/access/acl"
+        method: PUT
+        user: "root@pam"
+        password: "your_password"
+        validate_certs: no
+        headers:
+          Content-Type: "application/x-www-form-urlencoded"
+        body: "path=/&roles=new_role@new_group"
+        body_format: form-urlencoded
+      register: assign_role_response
+
+    - name: Debug role assignment response
+      debug:
+        var: assign_role_response
+
+    - name: Create Proxmox user
+      community.general.proxmox:
+        api_user: "root@pam"
+        api_password: "your_password"
+        api_host: "{{ ansible_host }}"
+        validate_certs: no
+        action: create_user
+        user: "new_user@pve"
+        password: "user_password"
+        comment: "New user created by Ansible"
+        groups: "new_group"

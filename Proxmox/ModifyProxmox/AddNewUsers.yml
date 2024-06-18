@@ -1,0 +1,17 @@
+---
+- name: Create users in Proxmox
+  hosts: proxmox
+  gather_facts: no
+  tasks:
+    - name: Create Proxmox user
+      community.general.proxmox:
+        api_user: "root@pam"
+        api_password: "your_password"
+        api_host: "{{ ansible_host }}"
+        validate_certs: no
+        node: "{{ inventory_hostname }}"
+        action: create_user
+        user: "new_user@pve"
+        password: "user_password"
+        comment: "New user created by Ansible"
+        groups: "PVEAdmin"
