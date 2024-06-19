@@ -8,9 +8,9 @@
     vars:
       ansible_python_interpreter: /usr/bin/python3
     proxmox_kvm:
-      api_user: ansible@pam
-      api_token_id: ansible-token
-      api_token_secret: tu-key-secreta
+      api_user: "{{ api_user }}"
+      api_token_id: "{{ api_token_id }}"
+      api_token_secret: "{{ api_token_secret }}"
       api_host: 192.168.1.100
       node: ASPA01
       name: vmtest

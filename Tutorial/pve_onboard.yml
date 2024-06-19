@@ -17,7 +17,7 @@
   - name: add Ansible ssh key
     authorized_key:
       user: ansible
-      key: "tu-key"
+      key: "{{ pub_key }}"
 
   - name: add Ansible to sudoers
     copy:
