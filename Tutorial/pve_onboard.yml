@@ -1,0 +1,28 @@
+---
+- hosts: ASPAcluster
+  tasks:
+
+  - name: install sudo packages
+    apt:
+      name: sudo
+      update_cache: yes
+      cache_valid_time: 3600
+      state: latest
+  
+  - name: create Ansible user
+    user:
+      name: ansible
+      shell: '/bin/bash'
+
+  - name: add Ansible ssh key
+    authorized_key:
+      user: ansible
+      key: "tu-key"
+
+  - name: add Ansible to sudoers
+    copy:
+      src: sudoer_ansible
+      dest: /etc/sudoers.d/ansible
+      owner: root
+      group: root
+      mode: 0440
